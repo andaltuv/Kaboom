@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/player/paddle2.png" type="Texture" id=1]
+[ext_resource path="res://assets/player/paddle1.png" type="Texture" id=2]
+[ext_resource path="res://assets/player/paddle.png" type="Texture" id=3]
+[ext_resource path="res://player/Player.gd" type="Script" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": false,
+"name": "splash",
+"speed": 20.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 46.5, 12.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 3.5 )
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 4 )
+
+[node name="vida1" type="Area2D" parent="."]
+position = Vector2( 0, -2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="vida1"]
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vida1"]
+position = Vector2( 1.5, 14.5 )
+shape = SubResource( 2 )
+
+[node name="vida2" type="Area2D" parent="."]
+position = Vector2( 0, 54 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="vida2"]
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vida2"]
+position = Vector2( 1.5, 14.5 )
+shape = SubResource( 2 )
+
+[node name="vida3" type="Area2D" parent="."]
+position = Vector2( 0, 109 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="vida3"]
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vida3"]
+position = Vector2( 1.5, 14.5 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1, 131 )
+shape = SubResource( 3 )
+disabled = true
+
+[connection signal="area_entered" from="vida1" to="." method="_on_vida1_area_entered"]
+[connection signal="area_entered" from="vida2" to="." method="_on_vida2_area_entered"]
+[connection signal="area_entered" from="vida3" to="." method="_on_vida3_area_entered"]

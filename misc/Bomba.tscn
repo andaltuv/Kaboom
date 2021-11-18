@@ -1,0 +1,38 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/bomba/bomba.png" type="Texture" id=1]
+[ext_resource path="res://assets/bomba/bomba3.png" type="Texture" id=2]
+[ext_resource path="res://assets/bomba/bomba4.png" type="Texture" id=3]
+[ext_resource path="res://assets/bomba/bomba1.png" type="Texture" id=4]
+[ext_resource path="res://assets/bomba/bomba2.png" type="Texture" id=5]
+[ext_resource path="res://assets/bomba/bomba5.png" type="Texture" id=6]
+[ext_resource path="res://assets/bomba/bomba6.png" type="Texture" id=7]
+[ext_resource path="res://misc/Bomba.gd" type="Script" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "falling",
+"speed": 20.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 14.5
+
+[node name="Bomba" type="Area2D" groups=["bombas"]]
+script = ExtResource( 8 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "falling"
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 11 )
+shape = SubResource( 2 )
